@@ -1,0 +1,37 @@
+/* assets/css/styles.css */
+/* Gaya untuk tombol Get Basic Info */
+.standardButton {
+    background-color: #4CAF50; /* Hijau */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.standardButton:hover {
+    background-color: #45a049;
+}
+
+#result_test, #result_company_profile, #result_company_news {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+#result_company_profile img {
+    display: block;
+    margin-top: 10px;
+    max-width: 100%;
+    height: auto;
+}
+
+.news-title {
+    font-weight: bold;
+}
+
+
+

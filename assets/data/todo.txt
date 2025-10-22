@@ -1,0 +1,11 @@
+
+20251020 - company news tidak berjalan --> coba pastikan DOMCOntentLoaded / 
+// Pastikan DOM sudah termuat sepenuhnya sebelum menjalankan script
+document.addEventListener('DOMContentLoaded', function () {  
+    async function getCompanyProfile() ;
+
+    async function getCompanyNews() { }); 
+
+}) ;
+
+
