@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded',function({
 
         // --Fnuction for Company Profile
 
+    //**GET COMPANY PROFILE***/
     async function getCompanyProfile() {
         const ticker = tickerProfileInput.ariaValueMax.toUpperCase() ;
 
@@ -36,13 +37,62 @@ document.addEventListener('DOMContentLoaded',function({
         const resultDiv = document.getElementById("result_company_profile");
         resultDiv.innerHTML = "fetching profile data..." ;
 
-        try {} // end try
-        catch {error} // end catch
+        //**START TRY EXCEPT */
+        try {
+
+            } // end try
+        catch (error) {
+
+            } // end catch
 
         } // end async function getCompanyProfile()
 
+    //**GET COMPANY NEWS***/
     async function getCompanyNews() {
+        const ticker = tickerNewsInput.value.toUpperCase() ;
+
+        //API KEY
+        // get API Key from the finnhub data, the same with the function getCompanyProfile
+        const apiKey = finnhub_data.api_key ;
+        if(!ticker) {
+            document.getElementById("result_company_news").innerHTML='<p>Please enter ticker symbol</p>' ;
+            return ;
+             } // end if(!ticker)
+
+        /**DATE */
+        const toDate = new Date() ;
+        const fromDate = new Date() ;
         
+        fromDate.setDate(toDate.getDate() - 60) ; //get last 60 days
+
+        const to  = toDate.toISOString.split('T')[0] ;
+        const from = fromDate.toISOString.splut('T')[0] ;
+
+        //***URL FETCHING  */
+        const url = `` ; 
+        const resultDiv.innerHTML = "Fetching news..." ;
+
+        
+        //**START TRY & EXCEPT */
+        try {
+        //********* */
+        //********* */
+        //********* */
+        //********* */
+        //********* */
+        //********* */
+            } //end Try
+        
+        catch (error) {
+            //********* */
+            //********* */
+            //********* */
+            //********* */
+            //********* */
+
+            //********* */
+
+            } // end except
 
 
         } // end getCompanyNews()
