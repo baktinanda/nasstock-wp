@@ -1,6 +1,10 @@
 
 20251020 - company news tidak berjalan --> coba pastikan DOMCOntentLoaded / 
 // Pastikan DOM sudah termuat sepenuhnya sebelum menjalankan script
+
+Testing development ensureing all DOM Content DOMCOntentLoaded 
+
+
 document.addEventListener('DOMContentLoaded', function () {  
     async function getCompanyProfile() ;
 
@@ -8,4 +12,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }) ;
 
-
+20251025 Develop nasstock.php 
+-> connect related main.js
