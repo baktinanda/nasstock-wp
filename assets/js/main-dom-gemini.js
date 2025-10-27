@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-            // Batasi hanya 5 berita teratas
+            // Limit only 5 latest Data
 
             let newsHTML = newsData.slice(0, 5).map(news => `
 

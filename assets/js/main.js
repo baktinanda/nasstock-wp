@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded',function() {
         // **--1--CONNECTt to **INPUT AND BUTTON** HTML
         const btnProfile = document.getElementById('btnGetProfile') ;
         const btnNews = document.getElementById('btnGetNews') ;
-        const tickerProfileInput = document.getElementById('tickerProfile') ;
-        const tickerNewsInput = document.getElementById('tickerNews') ;
+        const tickerProfileInput = document.getElementById('tickerCompanyProfile') ;
+        const tickerNewsInput = document.getElementById('tickerCompanyNews') ;
 
     // ensure if button available, avoid javascript error
     // event listener in javascript not onclick in html--best practice for html onlyu for structure
 
     // ***--2--ensure BUTTON AVAILABLE ****  
-    if (btnProfile) {
+    if (btnProfile) { 
         btnProfile.addEventListener('click',getCompanyProfile);
         } // end if(btnProfile) ;
     
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded',function() {
     
     //**--3--GET COMPANY PROFILE***/
     async function getCompanyProfile() {
-        const ticker = tickerProfileInput.ariaValueMax.toUpperCase() ;
+        const ticker = tickerProfileInput.value.toUpperCase() ;
 
         //*** get API & CHECK TICKER  */
         // get API Key from object send from wp_localize_script
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded',function() {
             const response = await fetch(url) ;
             const data = await response.json() ;
 
-            if (Objects.keys(data.length) === 0 || data.name === undefined ) {
+            if (Object.keys(data).length === 0 || data.name === undefined ) {
                 resultDiv.innerHTML = `<p>Data not found, pelase check your ticker symbo: ${ticker}</p>` ;
                 } // end if
             
@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded',function() {
                     <p><strong> Company Name : </strong> ${data.name}</p>
                     <p><strong> TIcker Symbol : </strong> ${data.ticker}</p>
                     <p><strong> Industry : </strong> ${data.finnhubIndustry}</p>
-                    <p><strong> Website : </strong><a href=" ${data.weburl}>${data.weburl}</a>"</p>
+                    <p><strong> Website : </strong><a href=" ${data.weburl} target="_blank" >  ${data.weburl} </a>"</p>
                     <p><strong> <img src="${data.logo}" alt="${data.name} Logo" style= "width:100px; height:auto; "  />  </strong> </p>
 
                     
@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded',function() {
                 } // end else
 
             } // end try
+
+
         catch (error) {
             resultDiv.innerHTML = `<p>Something went wrong. Please check Internet Connection </p>` ;
             console.error(`error fetching profile:${ticker} `, error) ;
@@ -78,12 +80,14 @@ document.addEventListener('DOMContentLoaded',function() {
     
     //**4--GET COMPANY NEWS***/
     async function getCompanyNews() {
+
+        //**--TICKER & API KEY --
         const ticker = tickerNewsInput.value.toUpperCase() ;
 
-        //**4--1--*API KEY --  API Key from the finnhub data, the same with the function getCompanyProfile
+        //**--*API KEY --  API Key from the finnhub data, the same with the function getCompanyProfile
         const apiKey = finnhub_data.api_key ;
 
-
+        
         if(!ticker) {
             document.getElementById("result_company_news").innerHTML='<p>Please enter ticker symbol</p>' ;
             return ;
@@ -94,14 +98,19 @@ document.addEventListener('DOMContentLoaded',function() {
         const toDate = new Date() ;
         const fromDate = new Date() ;
         
-        fromDate.setDate(toDate.getDate() - 60) ; //get last 60 days
+        fromDate.setDate(toDate.getDate() - 60) ; //get latest 60 days
 
-        const to  = toDate.toISOString.split('T')[0] ;
-        const from = fromDate.toISOString.split('T')[0] ;
+        const to  = toDate.toISOString().split('T')[0] ;
+        const from = fromDate.toISOString().split('T')[0] ;
+
+
 
         //***URL FETCHING & HTML const */
-        const url = `` ; 
-        const resultDiv.innerHTML = "Fetching news..." ;
+        const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}` ; 
+
+        const resultDiv = document.getElementById("result_company_news") ; 
+        
+        resultDiv.innerHTML = "Fetching news..." ;
 
         
         //**4--3--START TRY & EXCEPT */
@@ -110,7 +119,8 @@ document.addEventListener('DOMContentLoaded',function() {
             const newsData = await response.json() ;
 
             //**4-3-1 CHECK DATA--IF ELSE*/
-            if () {
+            if (!newsData) {
+                resultDiv.innerHTML = `<p>No news for the ${ticker}</p>` ;
                 return() ;
                 } // end if
 
@@ -127,8 +137,8 @@ document.addEventListener('DOMContentLoaded',function() {
             } //end Try
         
         catch (error) {
-            resultDiv.innerHTML = newsHTML ;
-
+            resultDiv.innerHTML = `something happened when fetching data, please check you ticker:  ${ticker} ` ;
+            console.error(`Error fetching news for ${ticker}`,error) ;
             } // end except
 
 

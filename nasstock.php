@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Nas Stock Information
  * Description: US Stock information
- * Version: 0.1
+ * Version: 0.2
  * Author: Bakti Idaman Nanda
  */
 
@@ -32,10 +32,10 @@ function nasstock_enqueue_assets() {
         ) ;         // end of -  wp_enqueue_script()
 
   
-    
 
-    // Send Finhubb API Key to JavaScript safely
-    wp_localize_script( 'nasstock-fh-company-profile-js','finnhub-data',array(
+
+    // Send Finhubb API Key to JavaScript safely--> To DO Next : Spepcific Setting in Admini Menu to setup Api Key  
+    wp_localize_script( 'nasstock-main-js','finnhub_data',array(
         'api_key' => 'cugpn3pr01qr6jndd8rgcugpn3pr01qr6jndd8s0'
         )) ;        // wp_localize_script
 
@@ -56,10 +56,10 @@ function fh_html_companyProfileAndNews() {
 <!--START HTML TEMPLATE-->
     <h1>WordPress Finance API</h1> 
     <div class="finnhub-container" >
-        <h3>Stock Company Profiel</h3>
+        <h3>Stock Company Profile</h3>
         <p>Stock Company Profile -Basic Information </p>
-        <input type="text" id="ticker" placeholder="type Stock TICKER..." />
-        <button onclick="getCompanyProfile()" >Get Company Profile</button>
+        <input type="text" id="tickerCompanyProfile" placeholder="type Stock TICKER..." />
+        <button id="btnGetProfile"  >Get Company Profile</button>
         <div id="result_company_profile" >Company Profile</div>
     </div>
     
@@ -67,7 +67,7 @@ function fh_html_companyProfileAndNews() {
         <h3>Stock Latest News</h3>
         <p>Company Updated News</p>
         <input type="text" id="tickerCompanyNews" placeholder="type Stock TICKER..." />
-        <button onclick="getCompanyNews()" >Get Company News</button>
+        <button  id="btnGetNews"  >Get Company News</button>
         <div id="result_company_news" >Latest Stock News</div>
     </div>
 

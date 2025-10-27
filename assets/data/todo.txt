@@ -13,4 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
 }) ;
 
 20251025 Develop nasstock.php 
--> connect related main.js
+-> connect related MediaDeviceInfo.-- finished--editing  setting.json
+
+
+gemini AI code check :
+[v] maxAriaValue--> value().** 
+[v] Objects --> Object
+[v] target="_blank"
+[v] 
+
