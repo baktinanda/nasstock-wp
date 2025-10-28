@@ -60,7 +60,7 @@ alert (">>connect to main.js") ;
                     <p><strong> Company Name : </strong> ${data.name}</p>
                     <p><strong> TIcker Symbol : </strong> ${data.ticker}</p>
                     <p><strong> Industry : </strong> ${data.finnhubIndustry}</p>
-                    <p><strong> Website : </strong><a href=" ${data.weburl} target="_blank" >  ${data.weburl} </a>"</p>
+                    <p><strong> Website : </strong><a href=" ${data.weburl}" target="_blank" >  ${data.weburl} </a></p>
                     <p><strong> <img src="${data.logo}" alt="${data.name} Logo" style= "width:100px; height:auto; "  />  </strong> </p>
 
                     
@@ -120,7 +120,7 @@ alert (">>connect to main.js") ;
             const newsData = await response.json() ;
 
             //**4-3-1 CHECK DATA--IF ELSE*/
-            if (!newsData) {
+            if (!newsData || newsData.length===0) {
                 resultDiv.innerHTML = `<p>No news for the ${ticker}</p>` ;
                 return() ;
                 } // end if

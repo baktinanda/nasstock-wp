@@ -11,7 +11,7 @@ if (! defined('ABSPATH')) {
     exit;
     } // end if ! abspath
 
-//**--1--REGISTER JAVASCRIPT FILES, CSS FILES */ */
+//**--1--REGISTER JAVASCRIPT FILES, CSS FILES */ 
 function nasstock_enqueue_assets() {
     // 1. REGISTER CSS FILE
     wp_enqueue_style(
