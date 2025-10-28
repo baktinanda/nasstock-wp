@@ -1,5 +1,6 @@
-alert (">>connect to main.js") ;
+
 document.addEventListener('DOMContentLoaded',function() {
+alert (">>connect to main.js") ;
 
         // **--1--CONNECTt to **INPUT AND BUTTON** HTML
         const btnProfile = document.getElementById('btnGetProfile') ;

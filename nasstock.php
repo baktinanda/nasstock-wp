@@ -24,7 +24,7 @@ function nasstock_enqueue_assets() {
 
     // 2. REGISTER JAVASCRIPT FILE -main.js --(put companyProfile() and )
     wp_enqueue_script(
-        'nasstock-fh-company-profile-js',   // name of --thisfunction--
+        'nasstock-main-js',   // name of --thisfunction--
         plugin_dir_url( __FILE__ ).'/assets/js/main.js',     // location of --javaScript file--
         array() ,   // Library required
         '1.0' ,     // Version of JavaScript file
@@ -54,7 +54,7 @@ function fh_html_companyProfileAndNews() {
     ?>  <!-- ***end PHP start HTML*** -->
 
 <!--START HTML TEMPLATE-->
-    <h1>WordPress Finance API</h1> 
+    <h1>WordPress Finance API MK 2</h1> 
     <div class="finnhub-container" >
         <h3>Stock Company Profile</h3>
         <p>Stock Company Profile -Basic Information </p>

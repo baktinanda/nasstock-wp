@@ -7,7 +7,6 @@ Testing development ensureing all DOM Content DOMCOntentLoaded
 
 document.addEventListener('DOMContentLoaded', function () {  
     async function getCompanyProfile() ;
-
     async function getCompanyNews() { }); 
 
 }) ;
@@ -20,5 +19,5 @@ gemini AI code check :
 [v] maxAriaValue--> value().** 
 [v] Objects --> Object
 [v] target="_blank"
-[v] 
+[v] fhCompanyProfil-- > main.js
 
