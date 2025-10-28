@@ -55,6 +55,7 @@ function fh_html_companyProfileAndNews() {
 
 <!--START HTML TEMPLATE-->
     <h1>WordPress Finance API MK 2</h1> 
+    <h2>Test 3 - 20251028-12.48</h2>
     <div class="finnhub-container" >
         <h3>Stock Company Profile</h3>
         <p>Stock Company Profile -Basic Information </p>

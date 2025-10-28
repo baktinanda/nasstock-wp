@@ -120,9 +120,9 @@ alert (">>connect to main.js") ;
             const newsData = await response.json() ;
 
             //**4-3-1 CHECK DATA--IF ELSE*/
-            if (!newsData || newsData.length===0) {
+            if (!newsData || newsData.length === 0) {
                 resultDiv.innerHTML = `<p>No news for the ${ticker}</p>` ;
-                return() ;
+                return ;
                 } // end if
 
             //**4-3-2 OUTPUT HTML */
@@ -140,7 +140,7 @@ alert (">>connect to main.js") ;
         catch (error) {
             resultDiv.innerHTML = `something happened when fetching data, please check you ticker:  ${ticker} ` ;
             console.error(`Error fetching news for ${ticker}`,error) ;
-            } // end except
+            } // end catch
 
 
         } // end getCompanyNews()
