@@ -1,3 +1,9 @@
+20251031 - 31 oktober 2025 
+next: start Fresh addEventListener - Connect to all function first
+
+previously: finish develop addEventListener(DOMContentLoaded) & fix all - bugs not founded
+
+
 
 20251020 - company news tidak berjalan --> coba pastikan DOMCOntentLoaded / 
 // Pastikan DOM sudah termuat sepenuhnya sebelum menjalankan script
