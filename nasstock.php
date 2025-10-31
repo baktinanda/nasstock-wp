@@ -24,21 +24,14 @@ function nasstock_enqueue_assets() {
 
     // 2. REGISTER JAVASCRIPT FILE
     wp_enqueue_script(
-        'nasstock-fh-company-profile-js',   // name of --thisfunction--
-        plugin_dir_url( __FILE__ ).'/assets/js/fh_companyProfile.js',     // location of --javaScript file--
+        'nasstock-main-js',   // name of --thisfunction--
+        plugin_dir_url( __FILE__ ).'/assets/js/main.js',     // location of --javaScript file--
         array() ,   // Library required
         '1.0' ,     // Version of JavaScript file
         true        // put Script below
         ) ;         // end of -  wp_enqueue_script()
 
-    // 3 . REGISTER JAVASCRIPT FILE
-     wp_enqueue_script(
-        'nasstock-fh-company-news-js',   // name of --thisfunction--
-        plugin_dir_url( __FILE__ ).'/assets/js/fh_companyNews.js',     // location of --javaScript file--
-        array() ,    // Library required
-        '1.0' ,      // Version of JavaScript file
-        true         // put Script below
-        ) ;          // end of -  wp_enqueue_script()
+    
 
     // Send Finhubb API Key to JavaScript safely
     //wp_localize_script( 'nasstock-fh-company-profile-js','finnhub-data',array(
@@ -64,8 +57,8 @@ function fh_html_companyProfileAndNews() {
     <div class="finnhub-container" >
         <h3>Stock Company Profiel</h3>
         <p>Stock Company Profile -Basic Information </p>
-        <input type="text" id="ticker" placeholder="type Stock TICKER..." />
-        <button onclick="getCompanyProfile()" >Get Company Profile</button>
+        <input type="text" id="tickerCompanyProfile" placeholder="type Stock TICKER..." />
+        <button  >Get Company Profile</button>
         <div id="result_company_profile" >Company Profile</div>
     </div>
     
@@ -73,7 +66,7 @@ function fh_html_companyProfileAndNews() {
         <h3>Stock Latest News</h3>
         <p>Company Updated News</p>
         <input type="text" id="tickerCompanyNews" placeholder="type Stock TICKER..." />
-        <button onclick="getCompanyNews()" >Get Company News</button>
+        <button  >Get Company News</button>
         <div id="result_company_news" >Latest Stock News</div>
     </div>
 
