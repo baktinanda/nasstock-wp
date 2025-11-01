@@ -8,4 +8,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 }) ;
 
+20251101 - addEventListener(DOMContentLoaded)-> fresh Start
+--> main.js connected 
+    --> correction on the end of addEventListener(DOMContentLoaded, function(){}); -->  } );  
+--> connect --> getCompanyProfile()
+--> connect --> getCompanyNews() 
+
+
 

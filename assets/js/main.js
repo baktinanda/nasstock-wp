@@ -24,13 +24,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
     //**GET COMPANY PROFILE***/
     async function getCompanyProfile() {
+        alert ('connect to function: getCompanyProfile()') ;
         const ticker = tickerProfileInput.value.toUpperCase() ;
 
         // get API Key from object send from wp_localize_script
         //const apiKey = finnhub_data.api_key ;
 
         if (!ticker) {
-            document.getElementById().innerHTML = "<p>Please enter ticker symbol</p>" ;
+            document.getElementById("result_company_profile").innerHTML = "<p>Please enter ticker symbol</p>" ;
+           return ;
             } // end if (!ticker)
         //---isi function---
         
@@ -43,7 +45,7 @@ document.addEventListener('DOMContentLoaded',function(){
             alert ("connect to function: getCompanyProfile() ") ;
             } // end try
         catch (error) {
-
+            console.error() ;
             } // end catch
 
         } // end async function getCompanyProfile()
@@ -53,6 +55,10 @@ document.addEventListener('DOMContentLoaded',function(){
         alert ('connect to function: getCompanyNews()') ; 
         const ticker = tickerNewsInput.value.toUpperCase() ;
         
+        if (!ticker) {
+            document.getElementById("result_company_news").innerHTML = "<p>Please enter ticker symbol</p>" ;
+           return ;
+            }
         
         //**START TRY & EXCEPT */
         try {
@@ -68,10 +74,8 @@ document.addEventListener('DOMContentLoaded',function(){
         } // end getCompanyNews()
 
 
-        } // end function (getCompanyProfile, getCompanyNews)
-
-
-    ); // end document.addEventListener('DOMContentLoaded') ;
+        }  ); // end function (getCompanyProfile, getCompanyNews) 
+    // end document.addEventListener('DOMContentLoaded') ;
 
 
 

@@ -19,10 +19,12 @@ function nasstock_enqueue_assets() {
         plugin_dir_url( __FILE__ ).'/assets/css/styles.css', // 2. Location of CSS file
         array(),    // 3. Requirement of Library/ No need other Library 
         '0.1',      // 4. Style Version
-        true        // 5. Put script below
+        'all'         // 5. Put script below
         ) ;         // end of wp_enqueue_style
 
     // 2. REGISTER JAVASCRIPT FILE
+    $script_handle = 'nasstock-main-js' ;
+
     wp_enqueue_script(
         'nasstock-main-js',   // name of --thisfunction--
         plugin_dir_url( __FILE__ ).'/assets/js/main.js',     // location of --javaScript file--
@@ -32,11 +34,12 @@ function nasstock_enqueue_assets() {
         ) ;         // end of -  wp_enqueue_script()
 
     
-
+    // this wp_localize_script is disabled first to check if main.js connected to system
+    // and all functions inside it all connected
     // Send Finhubb API Key to JavaScript safely
-    //wp_localize_script( 'nasstock-fh-company-profile-js','finnhub-data',array(
-   //     'api_key' => 'cugpn3pr01qr6jndd8rgcugpn3pr01qr6jndd8s0'
-    //    )) ;        // wp_localize_script
+    wp_localize_script( $script_handle,'finnhub_data',array(
+        'api_key' => 'cugpn3pr01qr6jndd8rgcugpn3pr01qr6jndd8s0'
+        )) ;        // wp_localize_script
 
 
     } // end function finnhub_enqueue_assets() 
@@ -55,10 +58,10 @@ function fh_html_companyProfileAndNews() {
 <!--START HTML TEMPLATE-->
     <h1>WordPress Finance API</h1> 
     <div class="finnhub-container" >
-        <h3>Stock Company Profiel</h3>
+        <h3>Stock Company Profile</h3>
         <p>Stock Company Profile -Basic Information </p>
         <input type="text" id="tickerCompanyProfile" placeholder="type Stock TICKER..." />
-        <button  >Get Company Profile</button>
+        <button id="btnGetProfile" >Get Company Profile</button>
         <div id="result_company_profile" >Company Profile</div>
     </div>
     
@@ -66,7 +69,7 @@ function fh_html_companyProfileAndNews() {
         <h3>Stock Latest News</h3>
         <p>Company Updated News</p>
         <input type="text" id="tickerCompanyNews" placeholder="type Stock TICKER..." />
-        <button  >Get Company News</button>
+        <button id="btnGetNews"  >Get Company News</button>
         <div id="result_company_news" >Latest Stock News</div>
     </div>
 
