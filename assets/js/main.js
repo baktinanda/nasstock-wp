@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded',function(){
     // ensure if button available, avoid javascript error
     // event listener in javascript not onclick in html--best practice for html onlyu for structure
 
-    // ensure Button Profile 
+    // Connect Button to Function 
     if (btnProfile) {
         btnProfile.addEventListener('click',getCompanyProfile);
         
@@ -22,13 +22,21 @@ document.addEventListener('DOMContentLoaded',function(){
 
         // --Fnuction for Company Profile
 
+
+
+
+
+
+
+
+
     //**GET COMPANY PROFILE***/
     async function getCompanyProfile() {
-        alert ('connect to function: getCompanyProfile()') ;
+        alert ('connect -->  getCompanyProfile()') ;
         const ticker = tickerProfileInput.value.toUpperCase() ;
 
         // get API Key from object send from wp_localize_script
-        //const apiKey = finnhub_data.api_key ;
+        const apiKey = finnhub_data.api_key ;
 
         if (!ticker) {
             document.getElementById("result_company_profile").innerHTML = "<p>Please enter ticker symbol</p>" ;
@@ -36,13 +44,13 @@ document.addEventListener('DOMContentLoaded',function(){
             } // end if (!ticker)
         //---isi function---
         
-        //const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${apiKey}`;
+        const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${apiKey}`;
         const resultDiv = document.getElementById("result_company_profile");
-        resultDiv.innerHTML = `this is not ticker: ${ticker}` ; 
+        resultDiv.innerHTML = `<p>checking api key and url--> apiKey: ${apiKey} -- url : ${url}</p>` ; 
 
         //**START TRY EXCEPT */
         try {
-            alert ("connect to function: getCompanyProfile() ") ;
+            alert ("connect to  getCompanyProfile() --try ") ;
             } // end try
         catch (error) {
             console.error() ;
@@ -50,11 +58,17 @@ document.addEventListener('DOMContentLoaded',function(){
 
         } // end async function getCompanyProfile()
 
+
+
+
+
+
+
+
     //**GET COMPANY NEWS***/
     async function getCompanyNews() {
         alert ('connect to function: getCompanyNews()') ; 
-        const ticker = tickerNewsInput.value.toUpperCase() ;
-        
+        const ticker = tickerNewsInput.value.toUpperCase() ;        
         if (!ticker) {
             document.getElementById("result_company_news").innerHTML = "<p>Please enter ticker symbol</p>" ;
            return ;
