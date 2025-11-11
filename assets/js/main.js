@@ -1,4 +1,4 @@
-alert (">>connect to main.js--test 07") ;
+alert (">>connect to main.js--test 08") ;
 console.log(">>connect to main.js") ;
 
 document.addEventListener('DOMContentLoaded',function(){
@@ -98,15 +98,30 @@ document.addEventListener('DOMContentLoaded',function(){
             return ;
             }
         
+        // Define **CONSTANTS**
+        const toDate = new Date() ;
+        const fromDate = new Date() ;
+        
+        fromDate.setDate(toDate.getDate() - 60) ; //get latest 60 days
+
+        const to  = toDate.toISOString().split('T')[0] ;
+        const from = fromDate.toISOString().split('T')[0] ;
         
         // Define output const --resultDiv 
         const resultDiv = document.getElementById("result_company_news");
         resultDiv.innerHTML = "Fetching news..." ;
         
         
+               
+        //***URL FETCHING & HTML const **/
+        const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}` ; 
+
+
         //**START TRY & EXCEPT */
         try {
         alert ('Try--getCompanyNews()') ;
+        resultDiv.innerHTML = `<p>URL: ${url}</p>`;
+
             } //end Try
         
         catch (error) {
