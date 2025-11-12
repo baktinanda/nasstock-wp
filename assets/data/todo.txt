@@ -1,3 +1,8 @@
+20251112- OME **LESSON LEARNED** important lesson adEventListener(DOMContentLoaded)--one of most important thing
+-->> AVOID ONCLICK="" because difficulty on maintenance
+
+
+
 
 20251020 - company news tidak berjalan --> coba pastikan DOMCOntentLoaded / 
 // Pastikan DOM sudah termuat sepenuhnya sebelum menjalankan script

@@ -1,9 +1,8 @@
-alert (">>connect to main.js--test 09-20251112") ;
-console.log(">>connect to main.js") ;
 
-document.addEventListener('DOMContentLoaded',function(){
+document.addEventListener('DOMContentLoaded',function() {
+alert (">>connect to main.js") ;
 
-        // connet to input and button from html
+        // **--1--CONNECTt to **INPUT AND BUTTON** HTML
         const btnProfile = document.getElementById('btnGetProfile') ;
         const btnNews = document.getElementById('btnGetNews') ;
         const tickerProfileInput = document.getElementById('tickerCompanyProfile') ;
@@ -12,47 +11,49 @@ document.addEventListener('DOMContentLoaded',function(){
     // ensure if button available, avoid javascript error
     // event listener in javascript not onclick in html--best practice for html onlyu for structure
 
-    // Connect Button to Function 
-    if (btnProfile) {
+    // ***--2--ensure BUTTON AVAILABLE ****  
+    if (btnProfile) { 
         btnProfile.addEventListener('click',getCompanyProfile);
-        
         } // end if(btnProfile) ;
     
-    if(btnNews) {
+    if (btnNews) {
         btnNews.addEventListener('click',getCompanyNews) ;
         } // end if(btnNews) ;
 
-        // --Function for Company Profile
+        // --Fnuction for Company Profile
 
-
-
-    //**GET COMPANY PROFILE***/
+    //** DONE**** */
+    
+    //**--3--GET COMPANY PROFILE***/
     async function getCompanyProfile() {
-        alert ('connect -->  getCompanyProfile()') ;
         const ticker = tickerProfileInput.value.toUpperCase() ;
 
+        //*** get API & CHECK TICKER  */
         // get API Key from object send from wp_localize_script
         const apiKey = finnhub_data.api_key ;
 
+        //**--3-1--CHECK TICKER  */
         if (!ticker) {
             document.getElementById("result_company_profile").innerHTML = "<p>Please enter ticker symbol</p>" ;
-           return ;
+            return ;
             } // end if (!ticker)
-        //---isi function---
         
+        
+
+        //**3-2--input URL and place result to HTML** */
         const url = `https://finnhub.io/api/v1/stock/profile2?symbol=${ticker}&token=${apiKey}`;
         const resultDiv = document.getElementById("result_company_profile");
-        resultDiv.innerHTML = `<p>checking api key and url--> apiKey: ${apiKey} -- url : ${url}</p>` ; 
+        resultDiv.innerHTML = "fetching profile data..." ;
 
-        //**START TRY EXCEPT */
+        
+        //**3--3--START TRY EXCEPT */
         try {
-            alert ("connect to  getCompanyProfile() --try ") ;
             const response = await fetch(url) ;
             const data = await response.json() ;
 
             if (Object.keys(data).length === 0 || data.name === undefined ) {
-            resultDiv.innerHTML = `<p>Data not found, pelase check your ticker symbo: ${ticker}</p>` ;
-            } // end if
+                resultDiv.innerHTML = `<p>Data not found, pelase check your ticker symbo: ${ticker}</p>` ;
+                } // end if
             
             else {
                 resultDiv.innerHTML = `
@@ -66,39 +67,35 @@ document.addEventListener('DOMContentLoaded',function(){
                     ` ; // end else --resultDinv.innerHTML
                 } // end else
 
-
             } // end try
-        catch (error) {
-            console.error() ;
-             resultDiv.innerHTML = `<p>Something went wrong. Please check Internet Connection </p>` ;
-            console.log("getCompanyProfile() catch error ") ;
 
+
+        catch (error) {
+            resultDiv.innerHTML = `<p>Something went wrong. Please check Internet Connection </p>` ;
+            console.error(`error fetching profile:${ticker} `, error) ;
             } // end catch
 
         } // end async function getCompanyProfile()
 
-
-
-
-
-
-
-
-    //**GET COMPANY NEWS***/
+    
+    
+    //**4--GET COMPANY NEWS***/
     async function getCompanyNews() {
-        alert ('connect to function: getCompanyNews()') ; 
-        const ticker = tickerNewsInput.value.toUpperCase() ;        
 
-         // get API Key from object send from wp_localize_script
+        //**--TICKER & API KEY --
+        const ticker = tickerNewsInput.value.toUpperCase() ;
+
+        //**--*API KEY --  API Key from the finnhub data, the same with the function getCompanyProfile
         const apiKey = finnhub_data.api_key ;
 
-
-        if (!ticker) {
-            document.getElementById("result_company_news").innerHTML = "<p>getCompanyNews(): Please enter ticker symbol</p>" ;
-            return ;
-            }
         
-        // Define **CONSTANTS**
+        if(!ticker) {
+            document.getElementById("result_company_news").innerHTML='<p>Please enter ticker symbol</p>' ;
+            return ;
+             } // end if(!ticker)
+
+        //**4-2--CONSTANTS
+        //*  DATE */
         const toDate = new Date() ;
         const fromDate = new Date() ;
         
@@ -106,25 +103,19 @@ document.addEventListener('DOMContentLoaded',function(){
 
         const to  = toDate.toISOString().split('T')[0] ;
         const from = fromDate.toISOString().split('T')[0] ;
-        
-               
-        //***URL FETCHING & HTML const **/
+
+
+
+        //***URL FETCHING & HTML const */
         const url = `https://finnhub.io/api/v1/company-news?symbol=${ticker}&from=${from}&to=${to}&token=${apiKey}` ; 
-       
-        // Define output const --resultDiv 
-        const resultDiv = document.getElementById("result_company_news");
+
+        const resultDiv = document.getElementById("result_company_news") ; 
+        
         resultDiv.innerHTML = "Fetching news..." ;
-        
 
         
-
-
-        //**START TRY & EXCEPT */
+        //**4--3--START TRY & EXCEPT */
         try {
-        alert ('Try--getCompanyNews()') ;
-        resultDiv.innerHTML = `<p>URL: ${url}</p>`;
-
-        //**fetching DATA--> JSON **/
             const response = await fetch(url) ;
             const newsData = await response.json() ;
 
@@ -143,22 +134,22 @@ document.addEventListener('DOMContentLoaded',function(){
                     <p class="news-summary" ><strong>***</strong>${news.summary}8</p>
                     </div>
                 `).join('') ;// end let newsHTML
-            
-            resultDiv.innerHTML = `<p>No news for the ${newsHTML}</p>` ;
 
             } //end Try
         
         catch (error) {
-            alert('Catch--getCompanyNews()') ;
-
-            } // end except
+            resultDiv.innerHTML = `something happened when fetching data, please check you ticker:  ${ticker} ` ;
+            console.error(`Error fetching news for ${ticker}`,error) ;
+            } // end catch
 
 
         } // end getCompanyNews()
 
 
-        }  ); // end function (getCompanyProfile, getCompanyNews) 
-    // end document.addEventListener('DOMContentLoaded') ;
+        } // end function (getCompanyProfile, getCompanyNews)
+
+
+    ); // end document.addEventListener('DOMContentLoaded') ;
 
 
 
